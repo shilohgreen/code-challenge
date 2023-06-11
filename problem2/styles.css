@@ -1,0 +1,306 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #333;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 120px;
+    height: 35px;
+    background-color: transparent;
+    position: relative;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 22px;
+    transition: all 0.3s cubic-bezier(0.13, 0.71, 0.57, 1.29);
+    cursor: pointer;
+}
+
+.active.button{
+    border: 3px solid #63A375;
+}
+
+.button-container {
+    opacity: 0;
+    transform: rotate(-45deg);
+    height: 35px;
+    transition: all 0.3s cubic-bezier(0.13, 0.71, 0.57, 1.29);
+}
+
+.button-checkmark {
+    position: absolute;
+    display: block;
+    background-color: #fff;
+}
+
+.button-checkmark:nth-of-type(1) {
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, -50%) rotate(30deg);
+    width: 5px;
+    height: 17px;
+}
+
+.button-checkmark:nth-of-type(2) {
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%) rotate(-60deg);
+    width: 5px;
+    height: 7px;
+}
+
+.button::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #63A375;
+    border-radius: 50%;
+    transform: translateX(-50%) scale(1.1);
+    transition: all 0.3s cubic-bezier(0.13, 0.71, 0.57, 1.29);
+    opacity: 0;
+}
+
+.button.fail{
+    border: 3px solid #DD2D4A;
+    color: #DD2D4A;
+}
+
+.button.active {
+    width: 35px;
+    border-radius: 50%;
+}
+
+.button.active::before {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.1);
+    transition: all 0.4s cubic-bezier(0.13, 0.71, 0.57, 1.29) 0.1s;
+}
+
+.button.active .button-span {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotate(30deg);
+}
+
+.button.active .button-container {
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: all 0.3s cubic-bezier(0.13, 0.71, 0.57, 1.29) 0.2s;
+}
+
+.button-span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.13, 0.71, 0.57, 1.29);
+}
+
+.fail .button-span{
+    color: #DD2D4A;
+}
+
+
+.centered {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.group {
+    margin: 20px;
+    /* left: 50%;
+    transform: translateX(-50%); */
+    height: 110px;
+    overflow: hidden;
+    position: relative;
+}
+
+label {
+    position: absolute;
+    top: 36.6666666667px;
+    color: rgba(255, 255, 255, 0.5);
+    font: 400 36.6666666667px "Arial";
+    cursor: text;
+    transition: 0.25s ease;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding-top: 36.6666666667px;
+    border: none;
+    border-radius: 0;
+    color: white;
+    background: #333;
+    font-size: 36.6666666667px;
+    transition: 0.3s ease;
+}
+
+input:valid~label {
+    top: 0;
+    font: 700 22px "Arial";
+    color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus {
+    outline: none;
+}
+
+input:focus~label {
+    top: 0;
+    font: 700 22px "Arial";
+    color: #2196f3;
+}
+
+
+input:focus~.bar:before {
+    transform: translateX(0);
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+    -webkit-text-fill-color: white !important;
+}
+
+.bar {
+    background: rgba(255, 255, 255, 0.5);
+    content: "";
+    width: 550px;
+    height: 3.6666666667px;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+/* .bar:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 150%;
+    background: #2196f3;
+    transform: translateX(-100%);
+} */
+
+input:focus~.bar{
+    background-color: #2196f3;
+}
+
+
+
+
+::selection {
+    background: rgba(33, 150, 243, 0.3);
+}
+
+input::placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input:focus::placeholder,
+input:placeholder-shown {
+    opacity: 0.7;
+}
+
+/* .success input:focus~label {
+    color: #63A375;
+} */
+
+.success .bar {
+    background: #63A375;
+}
+
+.success input~label {
+    color: #63A375;
+}
+
+.success input:focus~.bar {
+    background-color: #63A375;
+}
+
+.error .bar {
+    background: #DD2D4A;
+}
+
+.error input~label {
+    color: #DD2D4A;
+}
+
+.error input:focus~.bar {
+    background-color: #DD2D4A;
+}
+
+
+.shake .bar{
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px);
+    }
+
+    10% {
+        transform: translate(-3px);
+    }
+
+    20% {
+        transform: translate(5px);
+    }
+
+    30% {
+        transform: translate(-6px);
+    }
+
+    40% {
+        transform: translate(7px);
+    }
+
+    50% {
+        transform: translate(-8px);
+    }
+
+    60% {
+        transform: translate(5px);
+    }
+
+    70% {
+        transform: translate(-4px);
+    }
+
+    80% {
+        transform: translate(4px);
+    }
+
+    90% {
+        transform: translate(-2px);
+    }
+
+    100% {
+        transform: translate(1px);
+    }
+}
